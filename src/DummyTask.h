@@ -12,14 +12,14 @@
 
 
 
-class LambdaTask : public Task {
+class DummyTask : public Task {
 private:
     std::string taskIdentifier;
 public:
-    explicit LambdaTask(taskFunc_t func, std::string taskIdentifier="<DummyTask>") : func{func}, taskIdentifier{taskIdentifier} {;};
-    ~LambdaTask(){;};
-    void operator()(const ThreadPool &threadPool, std::thread::id threadId) const  {
-        std::cout << "ThreadPool works on Thread " + threadId  << std::endl;
+    DummyTask(std::string taskIdentifier="<DummyTask>") : taskIdentifier{taskIdentifier} { ; };
+    ~DummyTask(){ ; };
+    void operator()(const ThreadPool &threadPool, std::string threadId) const {
+        std::cout << "ThreadPool works on Thread " + threadId << std::endl;
     }
 };
 #endif //THREADPOOL_LAMBDATASK_H

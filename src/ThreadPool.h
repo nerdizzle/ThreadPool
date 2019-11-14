@@ -12,9 +12,12 @@ class ThreadPool {
 private:
     int numThreads;
     tbb::strict_ppl::concurrent_queue<Task* > taskQueue;
+    //std::vector<shared_ptr<Task>>
 public:
     ThreadPool(int numThreads) : numThreads{numThreads} { ; };
 
-    void addTask(){};
+    void addTask(Task* t){
+        taskQueue.emplace(std::move(t));
+    };
 };
 #endif //THREADPOOL_THREADPOOL_H
