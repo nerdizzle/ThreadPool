@@ -6,14 +6,9 @@
 #define THREADPOOL_TASK_H
 
 class Task {
-private:
-    std::string taskIdentifier;
-
 public:
-    Task(std::string taskIdentifier) : taskIdentifier{taskIdentifier}{ ; };
     virtual ~Task(){};
-
-    virtual void operator()();
+    virtual void operator()() const {} ;
 
 };
 

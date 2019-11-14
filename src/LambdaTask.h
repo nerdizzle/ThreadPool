@@ -18,9 +18,9 @@ private:
     std::string taskIdentifier;
     taskFunc_t func;
 public:
-    LambdaTask(taskFunc_t func, std::string taskIdentifier="<LambdaTask>") : func{func}, taskIdentifier{taskIdentifier} {;};
+    explicit LambdaTask(taskFunc_t func, std::string taskIdentifier="<LambdaTask>") : func{func}, taskIdentifier{taskIdentifier} {;};
     ~LambdaTask(){;};
-    void operator()(const ThreadPool &threadPool, std::thread::id threadId) override {
+    void operator()(const ThreadPool &threadPool, std::thread::id threadId) const {
         func(threadPool,threadId);
     }
 };
