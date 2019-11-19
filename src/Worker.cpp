@@ -3,15 +3,14 @@
 //
 
 #include "Worker.h"
-#include "ThreadPool.h"
+#include "Task.h"
 
 Worker::Worker(ThreadPool *tp) : tp(tp) { ; }
-Worker::~Worker()=default;
+Worker::~Worker() = default;
 
-void runTaskToCompletion(){
+void Worker::runTaskToCompletion(){
     Task* task;
     task = tp->getNextTask();
 };
-void assignThread (){};
-void runTaskToCompletion();
+void Worker::assignThread (){};
 Task* stealTask();
