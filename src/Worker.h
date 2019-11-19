@@ -7,24 +7,19 @@
 
 #include <tbb/concurrent_queue.h>
 #include "ThreadPool.h"
-#include "Task.h"
 
 //class Task;
 //class ThreadPool;
-
 class Worker {
 
 private:
     tbb::strict_ppl::concurrent_queue<Task* > workerTaskQueue; // for task stealing
     ThreadPool* tp;
 public:
-    Worker(ThreadPool* tp) : tp(tp) { ; }
-    ~Worker()=default;
+    Worker(ThreadPool* );
+    ~Worker();
 
-    void runTaskToCompletion(){
-        Task* task;
-        task = tp->getNextTask();
-    };
+    void runTaskToCompletion(){ };
     void assignThread (){};
 };
 #endif //THREADPOOL_WORKER_H
