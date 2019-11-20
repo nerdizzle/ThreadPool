@@ -18,8 +18,8 @@ private:
 public:
     DummyTask(std::string taskIdentifier="<DummyTask>") : taskIdentifier{taskIdentifier} { ; };
     ~DummyTask(){ ; };
-    void operator()(const ThreadPool &threadPool, std::string threadId) const {
-        std::cout << "ThreadPool works on Thread " + threadId << std::endl;
+    void operator()(const ThreadPool &threadPool, std::thread::id threadId) const override {
+        std::cout << "ThreadPool works on Thread " << threadId << std::endl;
     }
 };
 #endif //THREADPOOL_LAMBDATASK_H

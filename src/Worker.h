@@ -11,7 +11,7 @@
 
 class Worker {
 private:
-    //tbb::strict_ppl::concurrent_queue<Task* > workerTaskQueue; // for task stealing
+    tbb::strict_ppl::concurrent_queue<Task* > workerTaskQueue; // for task stealing
     ThreadPool* tp;
 public:
     Worker(ThreadPool* );
