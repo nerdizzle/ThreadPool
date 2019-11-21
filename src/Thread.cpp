@@ -3,17 +3,26 @@
 //
 #include <iostream>
 #include "Thread.h"
+#include "Worker.h"
 
 Thread::Thread(){
     thread = std::thread([this]{
         std::cerr << "constructed thread: " << std::this_thread::get_id() << "\n";
         while(running){
-            running.store(false);
+            // fetch a worker
+            while(!worker.load()){std::this_thread::yield();}
+            std::cout << "worker has been fetched" << std::endl;
+            worker.load()->runTaskToCompletion();
+            std::cout << "task run to completion" << std::endl;
+            // let worker do his job
+            worker.store(nullptr);
+            break;
         }
     });
 }
 
 Thread::~Thread(){
+    std::cerr << "destructed thread: " << this->thread.get_id() << "\n";
     thread.join();
     running.store(false);
 }

@@ -20,13 +20,13 @@ void Worker::runTaskToCompletion(){
                 break;
             }
         } else {
+            std::cout << "task could be fetched from worker" << workerId << std::endl;
             // execute Task, overwritten function operator
             //(*task)(*tp, workerId);
-            (*task)(*tp, workerId);
-            //
+
             tp->taskFinished();
         }
-        break;
+        //break;
     }
 
 

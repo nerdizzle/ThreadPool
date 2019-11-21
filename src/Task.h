@@ -7,9 +7,8 @@
 
 class Task {
 public:
-    Task(){};
     virtual ~Task(){};
-    virtual void operator()(const ThreadPool &threadPool, std::thread::id threadId) const  = 0 ;
+    virtual void operator()(const ThreadPool &threadPool, std::thread::id threadId) const {};
 
 };
 

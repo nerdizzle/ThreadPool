@@ -52,9 +52,9 @@ Task* ThreadPool::getNextTask(){
 
     if(task != nullptr){
         tbb::spin_mutex:: scoped_lock{numTasksMutex};
+
         numTasks++;
     }
-
     return task;
 }
 
@@ -68,6 +68,7 @@ void ThreadPool::addTask(Task* t){
 
 void ThreadPool::taskFinished(){
     tbb::spin_mutex:: scoped_lock{numTasksMutex};
-    numTasks++;
+    //std::cout << numTasks << std::endl;
+    numTasks--;
 }
 
