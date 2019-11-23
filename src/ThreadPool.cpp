@@ -45,7 +45,7 @@ bool ThreadPool::runTaskCascade(){
 Task* ThreadPool::getNextTask(){
     Task* task = nullptr;
     if(!taskQueue.try_pop(task)){
-        std::cerr<<"could not get a task.."<< "\n";
+        std::cerr<<"could not get a task.."<< std::this_thread::get_id() <<"\n";
         // keep thread spinning
         std::this_thread::yield();
     }

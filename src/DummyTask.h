@@ -16,15 +16,12 @@ class DummyTask : public Task {
 private:
     std::string taskIdentifier;
 public:
-    DummyTask(std::string taskIdentifier="<DummyTask>") : taskIdentifier{taskIdentifier} {
+    explicit DummyTask(std::string taskIdentifier="<DummyTask>") : taskIdentifier{taskIdentifier} {
         std::cout << taskIdentifier << std::endl;
     };
     ~DummyTask(){ ; };
     void operator()(const ThreadPool &threadPool, std::thread::id threadId) const override {
-        std::cout << "ThreadPool works on Thread " << threadId << std::endl;
-    }
-    void printDummy(std::thread::id threadId){
-        std::cout << "ThreadPool works on Thread " << threadId << std::endl;
+        std::cout << "ThreadPool works " << threadId << std::endl;
     }
 };
 #endif //THREADPOOL_LAMBDATASK_H
