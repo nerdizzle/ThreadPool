@@ -11,9 +11,7 @@ Thread::Thread(){
         while(running){
             // fetch a worker
             while(!worker.load()){std::this_thread::yield();}
-            //std::cout << "worker has been fetched" <<  std::endl;
             worker.load()->runTaskToCompletion();
-            //std::cout << "task run to completion" << std::endl;
             // let worker do his job
             worker.store(nullptr);
             break;

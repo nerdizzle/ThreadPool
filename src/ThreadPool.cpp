@@ -45,21 +45,20 @@ bool ThreadPool::runTaskCascade(){
 Task* ThreadPool::getNextTask(){
     Task* task = nullptr;
     if(!taskQueue.try_pop(task)){
-        std::cerr<<"could not get a task.."<< std::this_thread::get_id() <<"\n";
+        //std::cerr<<"could not get a task.."<< std::this_thread::get_id() <<"\n";
         // keep thread spinning
         std::this_thread::yield();
     }
 
     if(task != nullptr){
         tbb::spin_mutex:: scoped_lock{numTasksMutex};
-
         numTasks++;
     }
     return task;
 }
 
 bool ThreadPool::tasksAvailable(){
-    return numTasks>0;
+    return (numTasks>0);
 }
 
 void ThreadPool::addTask(Task* t){
@@ -68,7 +67,6 @@ void ThreadPool::addTask(Task* t){
 
 void ThreadPool::taskFinished(){
     tbb::spin_mutex:: scoped_lock{numTasksMutex};
-    //std::cout << numTasks << std::endl;
     numTasks--;
 }
 

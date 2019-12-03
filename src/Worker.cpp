@@ -13,7 +13,7 @@ void Worker::runTaskToCompletion(){
     while(true){
         Task* task = nullptr;
         task = tp->getNextTask();
-        if(task == nullptr){ // TODO: no task could be fetched, check own taskQueue
+        if(task == nullptr){
             if(tp->tasksAvailable()){
                 std::this_thread::yield();
             }else{
@@ -22,15 +22,10 @@ void Worker::runTaskToCompletion(){
         } else {
             std::cout << "task could be fetched from worker" << workerId << std::endl;
             // execute Task, overwritten function operator
-            (*task)(*tp, workerId);
-            //task->print
-
+            (task)->operator()(*tp, workerId);
             tp->taskFinished();
         }
         //break;
     }
-
-
 };
-void Worker::assignThread (){};
 Task* stealTask();

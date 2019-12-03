@@ -2,8 +2,8 @@
 // Created by pygmalion on 13.11.19.
 //
 
-#ifndef THREADPOOL_LAMBDATASK_H
-#define THREADPOOL_LAMBDATASK_H
+#ifndef THREADPOOL_DUMMYTASK_H
+#define THREADPOOL_DUMMYTASK_H
 
 #include <functional>
 #include <thread>
@@ -24,4 +24,4 @@ public:
         std::cout << "ThreadPool works " << threadId << std::endl;
     }
 };
-#endif //THREADPOOL_LAMBDATASK_H
+#endif //THREADPOOL_DUMMYTASK_H

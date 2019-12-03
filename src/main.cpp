@@ -14,13 +14,14 @@ int main() {
 
     //initialize ThreadPool
     tp.start();
-
+    std::vector<std::shared_ptr<Task>> whyDoYouNeedMe;
+    whyDoYouNeedMe.reserve(numTasks);
     // add tasks to the ThreadPool
     for(int i=0;i<numTasks; i++){
-        auto t = std::make_shared<DummyTask >();
+        auto t = std::make_shared<DummyTask>();
+        whyDoYouNeedMe.push_back(t);
         tp.addTask(t.get());
     }
-
     // process tasks
     tp.runTaskCascade();
     // close ThreadPool
